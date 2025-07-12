@@ -1,0 +1,144 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<!-- Breadcrumb Section Begin -->
+<style>
+    .razorpay-payment-button{
+        display: none;
+    }
+</style>
+<script>
+    function validateEmail() {
+        var email = document.getElementById("email").value;
+        var pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (pattern.test(email)) {
+            alert("Valid email!");
+        } else {
+            alert("Invalid email format!");
+        }
+    }
+</script>
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Check Out</h4>
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'index' %}">Home</a>
+                        <a href="{% url 'shop' %}">Shop</a>
+                        <span>Check Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="checkout__form">
+            <form action="{% url 'billing_details' %}" method="post">
+                <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_bilBagOBVTi4lE"
+		data-amount={{response.amount}} data-currency={{response.currency}} data-buttontext="Pay with Razorpay"
+		data-name="{{request.user}}" data-theme.color="#F37254" data-description="" data-image=""
+		data-prefill.name={{request.user.username}} data-prefill.email={{request.user.email}}>
+		</script>
+	    <input type="hidden" custom="Hidden Element" name="hidden">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <h6 class="checkout__title">Billing Details</h6>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Fist Name<span>*</span></p>
+                                    <input type="text" name="first_name" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Last Name<span>*</span></p>
+                                    <input type="text" name="last_name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Country<span>*</span></p>
+                            <input type="text" name="country" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            <input type="text" name="address" placeholder="Street Address"
+                                class="checkout__input__add" required>
+                            <input type="text" name="address1" placeholder="Apartment, suite, unite ect (optinal)" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Town/City<span>*</span></p>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Country/State<span>*</span></p>
+                            <input type="text" name="state" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>PIN CODE<span>*</span></p>
+                            <input type="text" name="pincode" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input type="text" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Email<span>*</span></p>
+                                    <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input__checkbox">
+                            <label for="acc">
+                                Create an account?
+                                <input type="checkbox" id="acc">
+                                <span class="checkmark"></span>
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4 class="order__title">Your order</h4>
+                            <div class="checkout__order__products">Product <span>Total</span></div>
+                            <ul class="checkout__total__products">
+                                {% for i in aid %}
+                                <li>{{forloop.counter}}. {{i.name}} <span>&#8377; {{i.total}}</span></li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="checkout__total__all">
+                                <li>Subtotal <span>&#8377; {{sub_total}}</span></li>
+                                <li>Discount <span>&#8377;{{discount}}</span></li>
+
+                                <li>Total <span>&#8377; {{total}}</span></li>
+                            </ul>
+                            <div class="checkout__input__checkbox">
+                                <label for="acc-or">
+                                    Create an account?
+                                    <input type="checkbox" id="acc-or">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <p>Thank you for your order! We appreciate your trust and look forward to serving you again.</p>
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</section>
+{% endblock %}

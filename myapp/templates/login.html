@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-card {
+      background-color: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-card h2 {
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+
+    .btn-login {
+      background-color: #6a11cb;
+      border: none;
+    }
+
+    .btn-login:hover {
+      background-color: #5913b2;
+    }
+
+    .form-text-links a {
+      color: #6a11cb;
+      text-decoration: none;
+    }
+
+    .form-text-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-card">
+    <form class="login-form" action="{% url 'login' %}" method="post">
+      <h2 class="text-center">Login</h2>
+      <h6 class="text-danger text-center">{{ msg }}</h6>
+
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="username" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="username" name="email" placeholder="Enter email" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
+      </div>
+
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-login text-white">Login</button>
+      </div>
+
+      <div class="form-text-links d-flex justify-content-between">
+        <a href="{% url 'register' %}">Sign up</a>
+        <a href="{% url 'forgot' %}">Forgot password?</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

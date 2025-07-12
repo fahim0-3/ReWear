@@ -1,0 +1,661 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crystalmart</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body style="background-color:#fff;">
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="#">Sign Out</a>
+                <a href="#">FAQs</a>
+            </div>
+            
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="/shopping_cart" class="search-switch"><img src="{% static 'img/icon/search.png' %}" alt=""></a>
+            <a href="{% url 'shopping_cart' %}"><img src="{% static 'img/icon/add.png' %}" alt=""></a>
+            <a href="/shopping_cart"><img src="{% static 'img/icon/cart.png' %}" alt=""> <span>0</span></a>
+            <div class="price">₹ 0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Free shipping</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a href="http://127.0.0.1:8000/login">Sign in</a>
+                                <a href="#">FAQs</a>
+                            </div>
+                            <div class="header__top__hover">
+                                <span>INR ₹</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo-2.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6" style="padding-top: 15px;">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'shop' %}">Shop</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            
+                            </li><li><a href="{% url 'contact' %}">Contacts</a></li>
+                            
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="{% url 'logout' %}" class="search-switch"><img src="{% static 'img/icon/logout.png' %}" alt=""></a>
+                        <a href="{% url 'shopping_cart' %}"><img src="{% static 'img/icon/add.png' %}" alt=""></a>
+                         
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+{% block content %}
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" style="padding-left:20px;" data-setbg="{% static 'img/hero/hero-2.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <h6 style="color:#B8860B;">Crystalmart</h6>
+                                <h2>Discover the Magic of Crystals </h2>
+                                <p style="color:#B8860B;">Explore the power of authentic crystals and unlock their magic for healing, energy, and balance.</p>
+                                <a href="{% url 'shop' %}" class="primary-btn" style="color:#B8860B;">Shop now <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% comment %} <div class="hero__items set-bg" data-setbg="{% static 'img/hero/hero-12.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text text-right">
+                                <h6 style="color:#B8860B;">HEALING STONES</h6>
+                                <h2>Healing Stones & Energy Crystals</h2>
+                                <p style="color:#B8860B;">Unlock the power of healing stones and energy crystals to restore balance, positivity, and well-being in your life.</p>
+                                <a href="{% url 'about' %}" class="primary-btn" style="color:#B8860B;">Shop now <span class="arrow_right" ></span></a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </section><br><br>
+    <!-- Hero Section End -->
+
+    
+    
+    <!-- Product Section Begin -->
+      <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls">
+                        <h2><strong>Featured Product</strong></h2><br/>
+                        <li class="active" data-filter="*">Best Sellers</li>
+                        <li data-filter=".new-arrivals">New Arrivals</li>
+                        <li data-filter=".hot-sales">Hot Sales</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row product__filter">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/1.WEBP' %}">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Black Tourmaline Crystal Jaap Mala108 Beads</h6>
+                            <a href="/shop/66/3" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/2.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Blue Sandstone Crystal Angel (Communication)</h6>
+                            <a href="/shop/47/9" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/3.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Black Tourmaline Crystal Tree 300 Beads</h6>
+                            <a href="/shop/111/4" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/4.WEBP' %}">
+                            <ul class="product__hover">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Black Obsidian Crystal Bracelet – 8 MM (Grounding)</h6>
+                            <a href="/shop/84/6" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/5.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Green Jade Crystal Angel (Abundance & Prosperity)</h6>
+                            <a href="/shop/52/9" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/6.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Rose Quartz Crystal Palm Stone (Love & Compassion)</h6>
+                            <a href="/shop/76/10" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/7.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Green Aventurine Tumble Stone Pack of 5</h6>
+                            <a href="/shop/124/13" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/8.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Selenite Crystal Sphere (Cleansing & Purification)</h6>
+                            <a href="/shop/97/15" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/9.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Tiger Eye Crystal Tower</h6>
+                            <a href="/shop/108/14" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/10.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Gomti Chakra Pyramid (Prosperity & Wealth)</h6>
+                            <a href="/shop/62/11" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/11.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Clear Quartz Tumble Stone – Pack of 5</h6>
+                            <a href="/shop/123/13" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/12.WEBP' %}">
+                            <ul class="product__hover">
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Golden Pyrite Crystal Bracelet – 8MM</h6>
+                            <a href="/shop/89/6" class="add-cart">View product</a>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <h5>₹350</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section> 
+    <!-- Product Section End -->
+
+    <!-- Categories Section Begin -->
+    <section class="categories spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="categories__text">
+                        <h2><span>Bracelet</span><br /> + <br /><span>Pyramid</span></h2>
+                    </div>
+                </div>  
+                <div class="col-lg-4">
+                    <div class="categories__hot__deal">
+                        <img src="{% static 'img/56-.png' %}" alt="">
+                        <div class="hot__deal__sticker">
+                            <span>Sale Of</span>
+                            <h5>50%</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 offset-lg-1">
+                    <div class="categories__deal__countdown">
+                        <span>Deal Of The Month</span>
+                        <h2>Seven Chakra Bracelet With Orgonite Pyramid</h2>
+                        <div class="categories__deal__countdown__timer" id="countdown">
+                            <div class="cd-item">
+                                <span>1</span>
+                                <p>Days</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>1</span>
+                                <p>Hours</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>50</span>
+                                <p>Minutes</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>18</span>
+                                <p>Seconds</p>
+                            </div>
+                        </div>
+                        <a href="shop?m_id=16" class="primary-btn">Shop now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Instagram Section Begin -->
+    <section class="instagram spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="instagram__text" style="text-align:center;">
+                        <h2>Popular Categories</h2>
+                        <h5 style="color: black;">Discover our finest selection of crystals and gemstones, carefully curated to enhance your life with beauty and positive energy.</h5><br><br>
+
+                    </div>
+            </div>
+        </div>
+    </section>
+    <!-- Instagram Section End -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+            </div>
+            <div class="row product__filter">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/angel.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Gemstone Angels</h6>
+                            <a href="/shop?m_id=9" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/bracelets.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Crystal Bracelet</h6>
+                            <a href="/shop?m_id=6" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/mala.jpg.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Jaap Mala</h6>
+                            <a href="/shop?m_id=3" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/plamstones.jpg.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Palm stone</h6>
+                            <a href="/shop?m_id=10" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/pyramid.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Crystal Pyramids</h6>
+                            <a href="/shop?m_id=11" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/tree.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Crystal Trees</h6>
+                            <a href="/shop?m_id=4" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/spheres.jpg.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Sphere/Ball</h6>
+                            <a href="/shop?m_id=15" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="{% static 'img/product/tower.jpg.WEBP' %}">
+                        </div>
+                        <div class="product__item__text" style="text-align:center;">
+                            <h6>Towers</h6>
+                            <a href="/shop?m_id=14" class="add-cart">View Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <!-- Latest Blog Section Begin -->
+<section>
+    <div class="row">
+        <div class="col-lg-6 p-0">
+            <div class="testimonial__text">
+              <h6 style="color:#B8860B; text-align:left;">HEALING STONES<br/></h6><br/>
+                <h2 style="text-align:left;"><b>Welcome to the Magical World of Crystals!</b></h2><br/>
+                <p style="text-align:left;">Explore our exquisite collection of healing crystals, gemstones, and spiritual accessories. Whether you're looking for energy-balancing stones, decorative crystals, or unique gifts, we’ve got you covered. Shop with confidence and invite positive vibes into your life!</p>
+            </div>
+        </div>
+        <div class="col-lg-6 p-0">
+            <div class="testimonial__pic set-bg" data-setbg="{% static 'img/about/h-1.jpg' %}"></div>
+    </div>
+</section>
+    <!-- Latest Blog Section End -->
+{% endblock %}
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="{% static 'img/logo-1.jpg' %}" alt=""></a>
+                        </div>
+                        <br/>
+                        <a href="#"><img src="{% static 'img/payment.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="/shop?m_id=3">Jap Malas</a></li>
+                            <li><a href="/shop?m_id=8">Orgonite Pendent</a></li>
+                            <li><a href="/shop?m_id=4">Gemstone Tree</a></li>
+                            <li><a href="/shop?m_id=6">Single Stone Bracelet</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Quick Links</h6>
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'shop' %}">Shop</a></li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Crystalmart is your go-to destination for authentic healing crystals and energy stones. We offer a wide range of ethically sourced crystals to bring positivity, balance, and well-being into your life. Explore the magic of crystals with us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">\
+                                               <p>Copyright ©
+                            &nbsp;2024 -
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            This website is made by <a href="https://sirmedia.in" target="_blank">PICA-46</a>
+                        </p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form" action="{% url 'search_fun' %}" method="get">
+                <input type="text" id="search-input" placeholder="Search here....." name="search">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

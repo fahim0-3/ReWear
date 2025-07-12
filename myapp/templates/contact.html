@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <!-- Map Begin -->
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.8640960277367!2d72.53698469999999!3d22.992024499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8530d4375f8d%3A0xfc9f197209547c70!2sSirmedia%20Technologies!5e0!3m2!1sen!2sin!4v1740312208809!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact__text">
+                        <div class="section-title">
+                            <h2>Contact Us</h2>
+                        </div>
+                        <ul>
+                            <li>
+                                <h4>Address</h4>
+                                <p>C-816 Rajyesh Rise, Near Vishala Hotel Vishala Circle,<br/> Juhapura, Ahmedabad, Gujarat 380007</p>
+                            </li>
+                            <li>
+                                <h4>Contact</h4>
+                                <a href="tel:+917862992686" style="color:#000" class="links_con">+91 78629 92686</a>
+                            </li>
+                            <li>
+                                <h4>Email</h4>
+                                <a href="mailto:info@crystalmart.com" class="links_con">info@crystalmart.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="contact__form">
+                        <form action="get">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Name">
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Email">
+                                </div>
+                                <div class="col-lg-12">
+                                    <textarea placeholder="Message"></textarea>
+                                    <button type="submit" class="site-btn">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+   

@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing & Shipping Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .invoice-container {
+      width: 800px;
+      background: #fff;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .invoice-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ddd;
+    }
+    .invoice-header img {
+      width: 210px;
+    }
+    .header-info {
+      text-align: right;
+    }
+    .header-info h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+    .header-info p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #777;
+    }
+    .section-title {
+      font-size: 18px;
+      margin-top: 20px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #ddd;
+    }
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .invoice-table th, .invoice-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    @media print {
+      .btn-container {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="invoice-container" id="invoice">
+  <div class="invoice-header">
+    <img src="{% static 'img/logo-2.png' %}" alt="Logo" id="invoice-logo">
+    <div class="header-info">
+      <h1>Invoice</h1>
+      
+    </div>
+  </div>
+
+  <table class="invoice-table">
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+        <strong style="font-size: 16px; color: #333;">Billing Information</strong><br><br>
+        <strong style="font-size: 14px;">{{ first_name }} {{ last_name }}</strong><br>
+        {{ address }}<br>
+        {{ address1 }}<br>
+        {{ city }} - {{ pincode }}<br>
+        {{ state }}, {{ country }}<br><br>
+        <strong style="color: #555;">Phone:</strong> {{ phone }}<br>
+        <strong style="color: #555;">E-mail:</strong> {{ email }}<br>
+    </td>
+    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+        <strong style="font-size: 16px; color: #333;">Seller Details</strong><br><br>
+        <strong style="font-size: 14px;">Crystal Mart</strong><br>
+        Salwa Naka, Khambhat<br>
+        Khambhat - 388620<br>
+        Gujarat, India<br><br>
+        <strong style="color: #555;">Phone:</strong>93136 76826<br>
+        <strong style="color: #555;">E-mail:</strong>crystalmart786@gmail.com<br>
+    </td>
+    
+    </tr>
+  </table>
+
+  <h2 class="section-title">Order Details</h2>
+  <table class="invoice-table">
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price (₹)</th>
+      <th>Total (₹)</th>
+    </tr>
+    {% for product in aid %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.qty }}</td>
+      <td>{{ product.price }}(₹)</td>
+      <td>{{ product.total }}(₹)</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2 class="section-title">Payment Summary</h2>
+  <table class="invoice-table">
+    <tr>
+      <th>Subtotal</th>
+      <td>₹{{ sub_total }}</td>
+      <th>Grand Total</th>
+      <td><strong>{{ total }}(₹)</strong></td>
+    </tr>
+
+  </table>
+  <p>Date: <span id="invoice-date">{{ date }}</span></p>
+  <p style="text-align:center;"><i>"Thank you for your purchase! We appreciate your support and look forward to serving you again."</i></p>
+</div>
+
+<div class="btn-container no-print">
+  <button onclick="downloadPDF()" class="btn">Download PDF</button>
+  <button onclick="printInvoice()" class="btn">Print Invoice</button>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+  function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "mm", "a4");
+
+    const invoice = document.getElementById("invoice");
+
+    html2canvas(invoice, { scale: 2 }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const imgWidth = 210; 
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      doc.addImage(imgData, "PNG", 0, 10, imgWidth, imgHeight);
+      doc.save("invoice.pdf");
+
+  function printInvoice() {
+    const printContents = document.getElementById("invoice").innerHTML;
+    const originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    location.reload(); // Optional: Reload to restore event listeners, etc.
+    });
+  }
+</script>
+
+</body>
+</html>

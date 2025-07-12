@@ -1,0 +1,361 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Custom Styles for the Product Detail Page -->
+<style>
+  /* Global Styles */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f8f8;
+    color: #333;
+    margin: 0;
+  }
+  .container1 {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 40px;
+    margin-top: 40px;
+  }
+  /* Product Gallery Styles */
+  .product-gallery {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+  .product-gallery img {
+    width: 100%;
+    display: none;
+    transition: opacity 0.4s ease-in-out;
+  }
+  .product-gallery img.active {
+    display: block;
+    opacity: 1;
+  }
+  /* Gallery Navigation Arrows */
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    user-select: none;
+  }
+  .gallery-arrow.left {
+    left: 10px;
+  }
+  .gallery-arrow.right {
+    right: 10px;
+  }
+  .gallery-arrow:hover {
+    background: rgba(0,0,0,0.7);
+  }
+  .gallery-thumbnails {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .gallery-thumbnails img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border 0.3s;
+  }
+  .gallery-thumbnails img.selected {
+    border-color: #0073aa;
+  }
+  /* Product Summary Styles */
+  .product-summary h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #e1e1e1;
+    padding-bottom: 10px;
+  }
+  .product-summary .price {
+    font-size: 1.8rem;
+    color: #e74c3c;
+    margin: 20px 0;
+    font-weight: 600;
+  }
+  .product-summary .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  .add-to-cart {
+    background: #0073aa;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  .add-to-cart:hover {
+    background: #005c87;
+  }
+  /* Related Products Section */
+  .related-products {
+    background: #fff;
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+  }
+  .related-products h2 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  /* Scrollable container for Related Products */
+  .related-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+  /* Custom horizontal scrollbar styling for Webkit browsers */
+  .related-scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  .related-scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .related-scroll-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  .related-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  .related-product-item {
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+    margin-right: 15px;
+  }
+  /* On mobile, switch to vertical scrolling */
+  @media (max-width: 768px) {
+    .related-scroll-container {
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 600px;
+    }
+    .related-product-item {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  /* Product Item Styles in Related Section */
+  .product__item {
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.3s ease;
+  }
+  .product__item:hover {
+    transform: translateY(-5px);
+  }
+  .product__item__pic {
+    position: relative;
+    overflow: hidden;
+  }
+  .product-bg {
+    width: 100%;
+    height: 250px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+  }
+  .product__item:hover .product-bg {
+    transform: scale(1.05);
+  }
+  .product__item__text {
+    padding: 15px;
+    text-align: center;
+  }
+  .product__item__text h6 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .product__item__text h5 {
+    font-size: 1.2rem;
+    color: #e74c3c;
+    margin: 10px 0;
+  }
+  .add-cart {
+    font-size: 0.9rem;
+    color: #0073aa;
+    text-decoration: none;
+  }
+  .rating i {
+    margin: 0 1px;
+  }
+  @media (max-width: 768px) {
+    .product-summary h1 {
+      font-size: 2rem;
+    }
+    .product-summary .price {
+      font-size: 1.5rem;
+    }
+    .product-gallery img {
+      max-height: 300px;
+    }
+    .gallery-thumbnails img {
+      width: 60px;
+      height: 60px;
+    }
+    .gallery-arrow {
+      font-size: 1.5rem;
+      padding: 8px;
+    }
+  }
+</style>
+
+<!-- Main Product Detail Markup -->
+<div class="container1">
+  <div class="row">
+    <!-- Left Column: Product Gallery -->
+    <div class="col-md-6 col-12 mb-4 mb-md-0">
+      <div class="product-gallery">
+        <!-- Gallery Navigation Arrows -->
+        <span class="gallery-arrow left" onclick="prevImage()"><</span>
+        <span class="gallery-arrow right" onclick="nextImage()">></span>
+        <!-- Main Product Images -->
+        <img src="{{ sp_id.img.url }}" alt="{{ sp_id.name }}" class="active" data-index="0">
+        {% if sp_id.img1 %}
+          <img src="{{ sp_id.img1.url }}" alt="{{ sp_id.name }}" data-index="1">
+        {% endif %}
+        {% if sp_id.img2 %}
+          <img src="{{ sp_id.img2.url }}" alt="{{ sp_id.name }}" data-index="2">
+        {% endif %}
+        {% if sp_id.img3 %}
+          <img src="{{ sp_id.img3.url }}" alt="{{ sp_id.name }}" data-index="3">
+        {% endif %}
+      </div>
+      <!-- Gallery Thumbnails -->
+      <div class="gallery-thumbnails">
+        <img src="{{ sp_id.img.url }}" alt="{{ sp_id.name }}" class="selected" data-index="0">
+        {% if sp_id.img1 %}
+          <img src="{{ sp_id.img1.url }}" alt="{{ sp_id.name }}" data-index="1">
+        {% endif %}
+        {% if sp_id.img2 %}
+          <img src="{{ sp_id.img2.url }}" alt="{{ sp_id.name }}" data-index="2">
+        {% endif %}
+        {% if sp_id.img3 %}
+          <img src="{{ sp_id.img3.url }}" alt="{{ sp_id.name }}" data-index="3">
+        {% endif %}
+      </div>
+    </div>
+    <!-- Right Column: Product Summary -->
+    <div class="col-md-6 col-12 product-summary">
+      <h1>{{ sp_id.name }}</h1>
+      
+      <div class="description" style="margin-top:40px;">
+        <h4><b>Description</b></h4>
+        <br/>
+        {{ sp_id.description }}
+      </div>
+      <div class="price">₹ {{ sp_id.price }}</div>
+      <a href="{% url 'add_cart' sp_id.id %}" class="add-to-cart" style="margin-bottom:20px;">Buy Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- Related Products Section with Custom Scrollbar -->
+<div class="container related-products mt-5">
+  <h2>Related Products</h2>
+  <div class="related-scroll-container">
+    {% for product in rp_id %}
+      <div class="related-product-item">
+        <div class="product__item">
+          <div class="product__item__pic">
+            <div class="product-bg" style="background-image: url('{{ product.img.url }}');">
+              <a href="{% url 'shop_details' product.id product.main_category.id %}">
+                <img class="product__hover" src="{% static 'img/view.png' %}" alt="Preview">
+              </a>
+            </div>
+          </div>
+          <div class="product__item__text">
+            <h6>{{ product.name }}</h6>
+            <a href="{% url 'add_cart' product.id %}" class="add-cart">Add To Cart</a>
+            <div class="rating" style="color: #FFD700;">
+              <i {% if product.rate < 1 %} class="fa fa-star-o" {% else %} class="fa fa-star" {% endif %}></i>
+              <i {% if product.rate < 2 %} class="fa fa-star-o" {% else %} class="fa fa-star" {% endif %}></i>
+              <i {% if product.rate < 3 %} class="fa fa-star-o" {% else %} class="fa fa-star" {% endif %}></i>
+              <i {% if product.rate < 4 %} class="fa fa-star-o" {% else %} class="fa fa-star" {% endif %}></i>
+              <i {% if product.rate < 5 %} class="fa fa-star-o" {% else %} class="fa fa-star" {% endif %}></i>
+            </div>
+            <h5>&#8377;{{ product.price }}</h5>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No related products found.</p>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const galleryImages = document.querySelectorAll('.product-gallery img');
+    const thumbnails = document.querySelectorAll('.gallery-thumbnails img');
+
+    function showImage(index) {
+      galleryImages.forEach(function(img) {
+        if (img.getAttribute('data-index') === index) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+      thumbnails.forEach(function(thumb) {
+        if (thumb.getAttribute('data-index') === index) {
+          thumb.classList.add('selected');
+        } else {
+          thumb.classList.remove('selected');
+        }
+      });
+    }
+    thumbnails.forEach(function(thumb) {
+      thumb.addEventListener('click', function() {
+        const index = this.getAttribute('data-index');
+        showImage(index);
+      });
+    });
+    window.nextImage = function() {
+      let currentIndex = 0;
+      galleryImages.forEach(function(img) {
+        if (img.classList.contains('active')) {
+          currentIndex = parseInt(img.getAttribute('data-index'));
+        }
+      });
+      const nextIndex = (currentIndex + 1) % galleryImages.length;
+      showImage(nextIndex.toString());
+    };
+    window.prevImage = function() {
+      let currentIndex = 0;
+      galleryImages.forEach(function(img) {
+        if (img.classList.contains('active')) {
+          currentIndex = parseInt(img.getAttribute('data-index'));
+        }
+      });
+      const prevIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      showImage(prevIndex.toString());
+    };
+  });
+</script>
+{% endblock %}
